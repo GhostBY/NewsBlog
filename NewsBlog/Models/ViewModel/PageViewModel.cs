@@ -8,13 +8,13 @@ namespace NewsBlog.Models.ViewModel
     public class PageViewModel
     {
         public int PageNumber { get; private set; }
-        public int TotalPage { get; private set; }
-        public PageViewModel(int Count,int PageNumber, int PageSize)
+        public int TotalPages { get; private set; }
+        public PageViewModel(int count, int pageNumber, int pageSize)
         {
-            this.PageNumber = PageNumber;
-            TotalPage = (int)Math.Ceiling(Count / (double)PageSize);
+            PageNumber = pageNumber;
+            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
         }
-        public bool HasPreviosPage
+        public bool HasPreviousPage
         {
             get
             {
@@ -25,7 +25,7 @@ namespace NewsBlog.Models.ViewModel
         {
             get
             {
-                return (PageNumber < TotalPage);
+                return (PageNumber < TotalPages);
             }
         }
     }

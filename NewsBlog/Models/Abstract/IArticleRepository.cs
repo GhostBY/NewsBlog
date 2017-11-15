@@ -8,7 +8,7 @@ namespace NewsBlog.Models.Abstract
 {
     public interface IArticleRepository
     {
-        IEnumerable<Article> GetAll();
+        IQueryable<Article> GetAll();
         Article Find(int Id);
     }
 }

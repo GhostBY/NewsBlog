@@ -26,9 +26,9 @@ namespace NewsBlog.Models.Concrete
             return article;
         }
 
-        public IEnumerable<Article> GetAll()
+        public IQueryable<Article> GetAll()
         {
-            return context.Articles.ToList();
+            return context.Articles;
         }
     }
 }

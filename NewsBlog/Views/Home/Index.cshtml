@@ -1,46 +1,47 @@
-﻿
+﻿@using NewsBlog.Models.ViewModel
+@model IndexViewModel
 @{
    
     ViewData["Title"] = "Home Page";
 }
-<div class="row">
-    <div class="col-md-12">
-    
-        <div class="news-block">
-            <div class="col-md-12">
-                <h3>ЛУКОЙЛ БУДЕТ ПОСТАВЛЯТЬ МАСЛА ДЛЯ КИТАЙСКОГО АВТОГИГАНТА DONGFENG MOTOR В РОССИИ</h3>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="news-img"></div>
+@foreach (var article in Model.Articles)
+{
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="news-block">
+                <div class="col-md-12">
+                    <h3>@article.Title</h3>
                 </div>
-                <div class="col-md-9">
-                    <div class="col-md-12">
-                        <p>ПАО «ЛУКОЙЛ» заключило контракт с ООО «Дунфэн Мотор Рус» на сервисную заливку масел и технических жидкостей для легковых автомобилей и микроавтобусов Dongfeng (DFM) в сертифицированных техцентрах в России.</p>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="news-img"></div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="col-md-12">
+                            <p>@article.ShortDiscription</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-<div class="col-md-12">
-
-    <div class="news-block">
-        <div class="col-md-12">
-            <h3>ЛУКОЙЛ БУДЕТ ПОСТАВЛЯТЬ МАСЛА ДЛЯ КИТАЙСКОГО АВТОГИГАНТА DONGFENG MOTOR В РОССИИ</h3>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="news-img"></div>
-            </div>
-            <div class="col-md-9">
-                <div class="col-md-12">
-                    <p>ПАО «ЛУКОЙЛ» заключило контракт с ООО «Дунфэн Мотор Рус» на сервисную заливку масел и технических жидкостей для легковых автомобилей и микроавтобусов Dongfeng (DFM) в сертифицированных техцентрах в России.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
+}
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-default btn">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-default btn">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}

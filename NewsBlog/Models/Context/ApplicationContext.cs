@@ -11,7 +11,9 @@ namespace NewsBlog.Models.Context
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options) { }
-        public DbSet<Article> Articles { get; set; }
 
+        public ApplicationContext()
+        { }
+        public DbSet<Article> Articles { get; set; }
     }
 }

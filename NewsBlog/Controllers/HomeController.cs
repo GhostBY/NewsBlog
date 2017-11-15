@@ -5,13 +5,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NewsBlog.Models;
+using NewsBlog.Models.Abstract;
+using NewsBlog.Models.Entities;
+using NewsBlog.Models.Concrete;
 
 namespace NewsBlog.Controllers
 {
     public class HomeController : Controller
     {
+        public IArticleRepository articleRepository { get; set; }
+        public HomeController(IArticleRepository articleRepository)
+        {
+            this.articleRepository = articleRepository;
+        }
         public IActionResult Index()
         {
+            IEnumerable<Article> res = articleRepository.GetAll();
             return View();
         }
 

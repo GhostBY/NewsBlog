@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,12 @@ namespace NewsBlog.Controllers
                 Articles= items
             };
             return View(viewModel);
+        }
+        public IActionResult News(int Id)
+        {
+            Article article = articleRepository.Find(Id);
+            ViewBag.NewsPage =  Convert.ToInt32(Id / 3);
+            return View(article);
         }
         public IActionResult About()
         {

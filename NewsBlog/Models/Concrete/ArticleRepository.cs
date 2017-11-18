@@ -15,9 +15,11 @@ namespace NewsBlog.Models.Concrete
         public ArticleRepository(ApplicationContext context)
         {
             this.context = context;
+
         }
         public Article Find(int Id)
         {
+            Articles = context.Articles.ToList();
             Article article = Articles.Where(p=>p.Id==Id).SingleOrDefault();
             //if(article!=null)
             //{

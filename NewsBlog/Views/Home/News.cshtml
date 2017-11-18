@@ -1,22 +1,19 @@
-﻿@using NewsBlog.Models.ViewModel
-@model IndexViewModel
+﻿@using NewsBlog.Models.Entities
+@model Article
 @{
-   
+
     ViewData["Title"] = "Home Page";
 }
 <div class="row">
     <div class="col-md-12">
-        <h1>Новостная лента</h1>
+        <h1>@Model.Title</h1>
     </div>
 </div>
-@foreach (var article in Model.Articles)
-{
     <div class="row">
         <div class="col-md-12">
-
             <div class="news-block">
                 <div class="col-md-12">
-                    <h3>@article.Title</h3>
+                    <h3>@Model.ShortDiscription</h3>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
@@ -24,31 +21,20 @@
                     </div>
                     <div class="col-md-9">
                         <div class="col-md-12">
-                            <a href="/Home/News?Id=@article.Id">@article.ShortDiscription</a>
+                            <p>@Model.Description</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-}
+
 <div class="row">
     <div class="col-md-6 .btn-div">
-        @if (Model.PageViewModel.HasPreviousPage)
-        {
-            <a href="/?page=@(Model.PageViewModel.PageNumber - 1)" class="btn btn-default btn">
+         <a href="/?page=@ViewBag.NewsPage" class="btn btn-default btn">
                 <i class="glyphicon glyphicon-chevron-left"></i>
                 Назад
-            </a>
-        }
-    </div>
-    <div align="right" class="col-md-6 .btn-div" >
-        @if (Model.PageViewModel.HasNextPage)
-        {<a href="/?page=@(Model.PageViewModel.PageNumber + 1)" class="btn btn-default btn">
-             Вперед
-             <i class="glyphicon glyphicon-chevron-right"></i>
-        </a>
-        }
+            </a>     
     </div>
 </div>
 

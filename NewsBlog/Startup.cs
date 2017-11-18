@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using NewsBlog.Models.Context;
 using NewsBlog.Models.Concrete;
 using NewsBlog.Models.Abstract;
+using NewsBlog.Models.Entities;
 
 namespace NewsBlog
 {
@@ -27,6 +29,7 @@ namespace NewsBlog
         {
             services.AddMvc();
             //services.AddSingleton<IArticleRepository,ArticleRepository>();
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
             services.AddTransient<IArticleRepository, ArticleRepository>();
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options =>
@@ -43,11 +46,12 @@ namespace NewsBlog
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
+            
             else
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            //app.UseIdentity();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

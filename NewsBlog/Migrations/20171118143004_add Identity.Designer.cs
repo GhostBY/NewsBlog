@@ -11,9 +11,10 @@ using System;
 namespace NewsBlog.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20171118143004_add Identity")]
+    partial class addIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -188,9 +189,7 @@ namespace NewsBlog.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("ImageName");
-
-                    b.Property<string>("ImagePath");
+                    b.Property<byte[]>("Image");
 
                     b.Property<string>("ShortDiscription");
 

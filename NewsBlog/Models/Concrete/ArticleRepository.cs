@@ -17,6 +17,13 @@ namespace NewsBlog.Models.Concrete
             this.context = context;
 
         }
+
+        public void Create(Article article)
+        {
+            context.Articles.Add(article);
+            context.SaveChanges();
+        }
+
         public Article Find(int Id)
         {
             Articles = context.Articles.ToList();
@@ -31,6 +38,16 @@ namespace NewsBlog.Models.Concrete
         public IQueryable<Article> GetAll()
         {
             return context.Articles;
+        }
+
+        public void Remove(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Article article)
+        {
+            throw new NotImplementedException();
         }
     }
 }

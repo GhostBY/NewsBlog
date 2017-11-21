@@ -10,5 +10,9 @@ namespace NewsBlog.Models.Abstract
     {
         IQueryable<Article> GetAll();
         Article Find(int Id);
+        void Create(Article article);
+        void Update(Article article);
+        void Remove(int Id);
+
     }
 }

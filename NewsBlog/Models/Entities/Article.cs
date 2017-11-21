@@ -12,6 +12,7 @@ namespace NewsBlog.Models.Entities
         public string Title { get; set; }
         public string ShortDiscription { get; set; }
         public string Description { get; set; }
-        public byte [] Image { get; set; }
+        public string   ImageName { get; set; }
+        public string ImagePath { get; set; }
     }
 }
